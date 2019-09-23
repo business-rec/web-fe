@@ -1,49 +1,42 @@
 import React from 'react'
-import Restaurant from './Restaurant'
 
 import styled from 'styled-components'
 
-const restaurants = [
-    {
-        name: 'Per Se',
-        type: 'French cuisine',
-        adress: '10 Columbus Cr',
-        city: 'New York'
-    },
-    {
-        name: 'Danel',
-        type: 'Fusion',
-        adress: '60 E 65th St',
-        city: 'New York'
-    },
-    {
-        name: 'The Modern',
-        type: 'New American',
-        adress: '9 W 53rd St',
-        city: 'New York'
-    },
-    {
-        name: 'Gramercy Tavern',
-        type: 'Tavern',
-        adress: '42 E 20th St',
-        city: 'New York'
-    },
-]
-
-function RestaurantList() {
+function RestaurantList(props) {
     return (
         <Container>
-            <Title>My Restaurants</Title>
-            <ul>
-                {restaurants.map(rest => {
-                    return  <Restaurant 
-                                name={rest.name} 
-                                type={rest.type}
-                                adress={rest.adress}
-                                city={rest.city}
-                            /> 
-                })}
-            </ul>
+          
+            <div>
+                {props.users.length > 0 ? (
+                    props.users.map(user => (
+                    <tr key={user.id}>
+                    <td>{user.name}</td>
+                    <dt>{user.type}</dt>
+                    <dt>{user.adress}</dt>
+                    <dt>{user.city}</dt>
+                    <td>
+                <button
+                className="button muted-button"
+                onClick={() => props.editRow(user)}
+              >
+                Edit
+              </button>
+              <button
+                className="button muted-button"
+                onClick={() => props.deleteUser(user.id)}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={3}>No users</td>
+        </tr>
+      )}
+    </div>
+
         </Container>
     )
 }

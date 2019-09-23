@@ -1,45 +1,64 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from "react";
 
-function EditRestForm() {
-    return (
-        <Container>
-            <h1>Add a new restaurant</h1>
-            <form>
-                
-                <label>Name</label>
-                <input placeholder="Business name"></input>
-                
-                <label>Type</label>
-                <input placeholder="Type of business"></input>
+const EditRestForm = props => {
+  const [rest, setRest] = useState(props.currentRest);
 
-                <label>Adress</label>
-                <input placeholder="Adress"></input>
+  useEffect(
+    () => {
+      setRest(props.currentRest);
+    },
+    [props]
+  );
 
-                <label>City</label>
-                <input placeholder="City"></input>
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setRest({ ...rest, [name]: value });
+  };
 
-                <button>Add</button>
-            </form>   
-        </Container>
-    )
-}
+  return (
+    <form
+      onSubmit={event => {
+        event.preventDefault();
+        props.updateUser(rest.id, rest);
+      }}
+    >
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        value={rest.name}
+        onChange={handleInputChange}
+      />
+      <label>Username</label>
+      <input
+        type="text"
+        name="type"
+        value={rest.type}
+        onChange={handleInputChange}
+      />ye
+      <input
+        type="text"
+        name="adress"
+        value={rest.adress}
+        onChange={handleInputChange}
+      />
 
-const Container = styled.div`
-    h1 {
-        font-size: 18px;
-        font-weight: 600; 
-        margin-bottom: 10px;
-    }
+     <input
+        type="text"
+        name="city"
+        value={rest.city}
+        onChange={handleInputChange}
+      />
 
-    form {
-        display: flex;
-        flex-direction: column;
-    }
+      <button>Update</button>
+      <button
+        onClick={() => props.setEditing(false)}
+        className="button muted-button"
+      >
+        Cancel
+      </button>
+    </form>
+  );
+};
 
-    button {
-        margin-top: 10px;
-    }
-`
-
-export default EditRestForm
+export default EditRestForm;

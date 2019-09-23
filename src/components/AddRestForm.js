@@ -1,45 +1,68 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
 
-function AddRestForm() {
-    return (
-        <Container>
-            <h1>Add a new restaurant</h1>
-            <form>
-                
-                <label>Name</label>
-                <input placeholder="Business name"></input>
+const AddRestForm = props => {
+   
+    const initialFormState = { 
+      id: null, 
+      name: "", 
+      type: "",
+      adress: "",
+      city: ""
+    };
 
-                <label>Type</label>
-                <input placeholder="Type of business"></input>
+  const [rest, setRest] = useState(initialFormState);
 
-                <label>Adress</label>
-                <input placeholder="Adress"></input>
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setRest({ ...rest, [name]: value });
+  };
 
-                <label>City</label>
-                <input placeholder="City"></input>
+  return (
+    <form
+      onSubmit={event => {
+        event.preventDefault();
+    // ADD
+        if (!rest.name || !rest.username) return;
+        props.addUser(rest);
+        setRest(initialFormState);
+      }}
+    >
+      <label>Name</label>
+      <input
+        type="text"
+        name="name"
+        value={rest.name}
+        onChange={handleInputChange}
+      />
+      <label>Type</label>
+      <input
+        type="text"
+        name="type"
+        value={rest.type}
+        onChange={handleInputChange}
+      />
+     
+     <label>Adress</label>
+     <input
+        type="text"
+        name="adress"
+        value={rest.adress}
+        onChange={handleInputChange}
+      />
 
-                <button>Add</button>
-            </form>   
-        </Container>
-    )
-}
 
-const Container = styled.div`
-    h1 {
-        font-size: 18px;
-        font-weight: 600; 
-        margin-bottom: 10px;
-    }
+     <label>City</label>
+     <input
+        type="text"
+        name="city"
+        value={rest.city}
+        onChange={handleInputChange}
+      />
 
-    form {
-        display: flex;
-        flex-direction: column;
-    }
+      <button>Add new user</button>
+    </form>
+  );
+};
 
-    button {
-        margin-top: 10px;
-    }
-`
+export default AddRestForm;
 
-export default AddRestForm
