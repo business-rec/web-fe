@@ -20,11 +20,11 @@ const Signup=({errors, touched, status}) => {
                 {touched.name && errors.name && (
                     <p>{errors.name}</p>
                 )}
-                Email: <Field type="text" name="email" placeholder="enter email address"/>
+                Email: <Field type="text" name="email" placeholder="enter your email address"/>
                 {touched.email && errors.email && (
                     <p>{errors.email}</p>
                 )}
-                Password: <Field type="password" name="password" placeholder="enter your password"/>
+                Password: <Field type="password" name="password" placeholder="Create New Password"/>
                 {touched.password && errors.password && (
                     <p>{errors.password}</p>
                 )}
@@ -52,7 +52,7 @@ const FormikSignup = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("You must enter your name before continuing"),
         email: Yup.string().required("Email must be entered"),
-        password: Yup.string().required("Password must be entered")
+        password: Yup.string().required("Password must be entered"),       
     }),
     handleSubmit(values, { setStatus }){
     axios
