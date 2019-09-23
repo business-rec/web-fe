@@ -19,7 +19,7 @@ const EditRestForm = props => {
     <form
       onSubmit={event => {
         event.preventDefault();
-        props.updateUser(rest.id, rest);
+        props.updateRest(rest.id, rest);
       }}
     >
       <label>Name</label>
@@ -35,7 +35,7 @@ const EditRestForm = props => {
         name="type"
         value={rest.type}
         onChange={handleInputChange}
-      />ye
+      />
       <input
         type="text"
         name="adress"

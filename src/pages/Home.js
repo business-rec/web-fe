@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AddRestForm from "../components/AddRestForm";
 import EditRestForm from "../components/EditRestForm";
 import RestaurantList from '../components/RestaurantList'
+import Header from '../components/Header'
 
 const App = () => {
 
@@ -11,7 +12,17 @@ const App = () => {
     { id: 3, name: "CCC", type: "sasisuseso", adress: '123', city: 'ny' }
   ];
 
+  const initialFormState = { 
+    id: null, 
+    name: "", 
+    type: "",
+    adress: "",
+    city: ""
+  };
+
   const [rests, setRests] = useState(restData);
+  const [currentRest, setCurrentRest] = useState(initialFormState);
+  const [editing, setEditing] = useState(false);
 
   const addRest = rest => {
     rest.id = rests.length + 1;
@@ -22,21 +33,7 @@ const App = () => {
     setRests(rests.filter(rest => rest.id !== id));
   };
 
-  const [editing, setEditing] = useState(false);
-  
-  // ADD 
-  const initialFormState = { 
-      id: null, 
-      name: "", 
-      type: "",
-      adress: "",
-      city: ""
-    };
-  
-  const [currentRest, setCurrentRest] = useState(initialFormState);
-
-  // ADD
-  const editRow = rest => {
+  const editRest = rest => {
     setEditing(true);
     setCurrentRest({ 
         id: rest.id, 
@@ -47,15 +44,16 @@ const App = () => {
     });
   };
 
-
   const updateRest = (id, updateRest) => {
     setEditing(false);
     setRests(rests.map(rest => (rest.id === id ? updateRest : rest)));
   };
 
+  
   return (
     <div>
       <div>
+        <Header />
         <div>
           {editing ? (
             <div>
@@ -63,21 +61,22 @@ const App = () => {
               <EditRestForm
                 editing={editing}
                 setEditing={setEditing}
-                currentUser={currentRest}
-                updateUser={updateRest}
+                currentRest={currentRest}
+                updateRest={updateRest}
               />
             </div>
           ) : (
             <div>
               <h2>Add Restaurant</h2>
-              <AddRestForm addUser={addRest} />
+              <AddRestForm addRest={addRest} />
             </div>
           )}
         </div>
         <div>
           <h2>My Restaurants</h2>
-          <RestaurantList users={rests} deleteUser={deleteRest} editRow={editRow} />
+          <RestaurantList rests={rests} deleteRest={deleteRest} editRest={editRest} />
         </div>
+
       </div>
     </div>
   );

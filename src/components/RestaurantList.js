@@ -1,51 +1,42 @@
 import React from 'react'
-
 import styled from 'styled-components'
 
 function RestaurantList(props) {
     return (
         <Container>
-          
             <div>
-                {props.users.length > 0 ? (
-                    props.users.map(user => (
-                    <tr key={user.id}>
-                    <td>{user.name}</td>
-                    <dt>{user.type}</dt>
-                    <dt>{user.adress}</dt>
-                    <dt>{user.city}</dt>
-                    <td>
-                <button
-                className="button muted-button"
-                onClick={() => props.editRow(user)}
-              >
-                Edit
-              </button>
-              <button
-                className="button muted-button"
-                onClick={() => props.deleteUser(user.id)}
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))
-      ) : (
-        <tr>
-          <td colSpan={3}>No users</td>
-        </tr>
-      )}
-    </div>
-
+                {props.rests.length > 0 ? (
+                    props.rests.map(rest => (
+                        <div key={rest.id}>
+                                <p>{rest.name}</p>
+                                <p>{rest.type}</p>
+                                <p>{rest.adress}</p>
+                                <p>{rest.city}</p>
+                        <div>
+                            <button
+                            className="button muted-button"
+                            onClick={() => props.editRest(rest)}
+                        >
+                            Edit
+                        </button>
+                        <button
+                            className="button muted-button"
+                            onClick={() => props.deleteRest(rest.id)}
+                        >
+                            Delete
+                        </button>
+                        </div>
+                    </div>
+                        ))
+                    ) : (
+                        <div>
+                            <p>No users</p>
+                        </div>
+                    )}
+            </div>
         </Container>
     )
 }
-
-const Title = styled.h1`
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 25px;
-`
 
 const Container = styled.div`
    margin-left: 100px;

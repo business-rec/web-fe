@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
         vertical-align: baseline;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-family: 'Cereal';
+        font-family: 'system-ui';
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
