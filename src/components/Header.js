@@ -1,0 +1,12 @@
+import React from "react";
+
+const Header = () => {
+  return (
+    <div>
+        <h1>This is a header</h1>
+     {/*    <a>Logout</a>
+        <p>{username}</p> */}
+    </div>
+)}
+
+export default Header;
