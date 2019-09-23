@@ -1,12 +1,22 @@
-import React from "react";
+import React from 'react'
+import styled from 'styled-components'
 
-const Header = () => {
-  return (
-    <div>
-        <h1>This is a header</h1>
-     {/*    <a>Logout</a>
-        <p>{username}</p> */}
-    </div>
-)}
+function Header() {
+    return (
+        <Container>
+            <h1>BUSINESS APP</h1>
+            <p><a href="https://google.com">Log out</a></p>
+        </Container>
+    )
+}
 
-export default Header;
+const Container = styled.div`
+    background-color: #fff;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid black;
+`
+
+export default Header

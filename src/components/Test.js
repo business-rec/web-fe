@@ -21,6 +21,7 @@ const AddRestForm = props => {
     <form
       onSubmit={event => {
         event.preventDefault();
+        if (!rest.name || !rest.username) return;
         props.addRest(rest);
         setRest(initialFormState);
       }}
@@ -63,3 +64,4 @@ const AddRestForm = props => {
 };
 
 export default AddRestForm;
+

@@ -1,58 +1,42 @@
 import React from 'react'
-import Restaurant from './Restaurant'
-
 import styled from 'styled-components'
 
-const restaurants = [
-    {
-        name: 'Per Se',
-        type: 'French cuisine',
-        adress: '10 Columbus Cr',
-        city: 'New York'
-    },
-    {
-        name: 'Danel',
-        type: 'Fusion',
-        adress: '60 E 65th St',
-        city: 'New York'
-    },
-    {
-        name: 'The Modern',
-        type: 'New American',
-        adress: '9 W 53rd St',
-        city: 'New York'
-    },
-    {
-        name: 'Gramercy Tavern',
-        type: 'Tavern',
-        adress: '42 E 20th St',
-        city: 'New York'
-    },
-]
-
-function RestaurantList() {
+function RestaurantList(props) {
     return (
         <Container>
-            <Title>My Restaurants</Title>
-            <ul>
-                {restaurants.map(rest => {
-                    return  <Restaurant 
-                                name={rest.name} 
-                                type={rest.type}
-                                adress={rest.adress}
-                                city={rest.city}
-                            /> 
-                })}
-            </ul>
+            <div>
+                {props.rests.length > 0 ? (
+                    props.rests.map(rest => (
+                        <div key={rest.id}>
+                                <p>{rest.name}</p>
+                                <p>{rest.type}</p>
+                                <p>{rest.adress}</p>
+                                <p>{rest.city}</p>
+                        <div>
+                            <button
+                            className="button muted-button"
+                            onClick={() => props.editRest(rest)}
+                        >
+                            Edit
+                        </button>
+                        <button
+                            className="button muted-button"
+                            onClick={() => props.deleteRest(rest.id)}
+                        >
+                            Delete
+                        </button>
+                        </div>
+                    </div>
+                        ))
+                    ) : (
+                        <div>
+                            <p>No users</p>
+                        </div>
+                    )}
+            </div>
         </Container>
     )
 }
-
-const Title = styled.h1`
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 25px;
-`
 
 const Container = styled.div`
    margin-left: 100px;
