@@ -3,16 +3,6 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-function Login() {
-    return (
-        <div>
-            <h1>Login</h1>
-        </div>
-    )
-}
-
-export default Login
-
 const Login=({errors, touched, status}) => {
     const [users,setUsers] = useState([]);
     useEffect(() => {
@@ -23,7 +13,7 @@ const Login=({errors, touched, status}) => {
 
     return(
 
-    <div className = "container">
+    <div>
         <Form>
             <div>
                 Email: <Field type="text" name="email" placeholder="enter email address"/>
@@ -50,12 +40,12 @@ const FormikLogin = withFormik({
     mapPropsToValues({email,password}){
         return {
             email: email ||"",
-            password: password || "",
+            password: password || ""
         };
     },
     validationSchema: Yup.object().shape({
         email: Yup.string().required("Email must be entered"),
-        password: Yup.string().required("Password must be entered"),       
+        password: Yup.string().required("Password must be entered")    
     }),
     handleSubmit(values, { setStatus }){
     axios
@@ -72,7 +62,7 @@ const FormikLogin = withFormik({
 
 })(Login);
 console.log(FormikLogin)
-export default Login;
+export default FormikLogin;
 
 
 

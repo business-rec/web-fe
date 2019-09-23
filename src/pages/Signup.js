@@ -3,16 +3,6 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-function Signup() {
-    return (
-        <div>
-            <h1>Sign up</h1>
-        </div>
-    )
-}
-
-export default Signup
-
 const Signup=({errors, touched, status}) => {
     const [newUser,setNewUser] = useState([]);
     useEffect(() => {
@@ -39,10 +29,11 @@ const Signup=({errors, touched, status}) => {
                     <p>{errors.password}</p>
                 )}
             </div>
+            <button>Sign Up</button>
         </Form>
-        {users.map(event => (
+        {newUser.map(event => (
         <ul className = "list"key={event.id}>
-          <li>Name:{e.name}</li>
+          <li>Name:{event.name}</li>
           <li>Email: {event.email}</li>
           <li>Password: {event.password} </li>
         </ul>
@@ -51,17 +42,17 @@ const Signup=({errors, touched, status}) => {
     );
 };
 const FormikSignup = withFormik({
-    mapPropsToValues({email,password}){
+    mapPropsToValues({name,email,password}){
         return {
             name: name || "",
             email: email ||"",
-            password: password || "",
+            password: password || ""
         };
     },
     validationSchema: Yup.object().shape({
         name: Yup.string().required("You must enter your name before continuing"),
         email: Yup.string().required("Email must be entered"),
-        password: Yup.string().required("Password must be entered"),       
+        password: Yup.string().required("Password must be entered")
     }),
     handleSubmit(values, { setStatus }){
     axios
