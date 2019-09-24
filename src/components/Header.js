@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { Link } from 'react-router-dom'
+
 function Header() {
     return (
         <Container>
-            <h1>BUSINESS APP</h1>
-            <p><a href="https://google.com">Log out</a></p>
+            <Link to="/login">
+                <button>Logout</button>
+            </Link>
         </Container>
     )
 }

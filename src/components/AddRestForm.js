@@ -6,7 +6,7 @@ const AddRestForm = props => {
       id: null, 
       name: "", 
       type: "",
-      adress: "",
+      address: "",
       city: ""
     };
 
@@ -40,11 +40,11 @@ const AddRestForm = props => {
         onChange={handleInputChange}
       />
      
-     <label>Adress</label>
+     <label>Address</label>
      <input
         type="text"
         name="adress"
-        value={rest.adress}
+        value={rest.address}
         onChange={handleInputChange}
       />
 

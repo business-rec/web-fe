@@ -1,72 +1,62 @@
-import React, {useState, useEffect} from "react";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, {useState} from "react";
+import axios from 'axios';
 
-const Signup=({errors, touched, status}) => {
-    const [newUser,setNewUser] = useState([]);
-    useEffect(() => {
-        if (status){
-            setNewUser([...newUser, status]);
-        }
-    },[status]);
+const Signup = (props) => {
+ 
+  const [credentials, setCredentials] = useState({
+    username: '',
+    email: '',
+    password: ''
+  })
 
-    return(
-
-    <div>
-        <Form>
-            <div>
-                Name: <Field type= "text" name="name" placeholder="enter full name"/>
-                {touched.name && errors.name && (
-                    <p>{errors.name}</p>
-                )}
-                Email: <Field type="text" name="email" placeholder="enter your email address"/>
-                {touched.email && errors.email && (
-                    <p>{errors.email}</p>
-                )}
-                Password: <Field type="password" name="password" placeholder="Create New Password"/>
-                {touched.password && errors.password && (
-                    <p>{errors.password}</p>
-                )}
-            </div>
-            <button>Sign Up</button>
-        </Form>
-        {newUser.map(event => (
-        <ul className = "list"key={event.id}>
-          <li>Name:{event.name}</li>
-          <li>Email: {event.email}</li>
-          <li>Password: {event.password} </li>
-        </ul>
-      ))}
-    </div>
-    );
-};
-const FormikSignup = withFormik({
-    mapPropsToValues({name,email,password}){
-        return {
-            name: name || "",
-            email: email ||"",
-            password: password || ""
-        };
-    },
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required("You must enter your name before continuing"),
-        email: Yup.string().required("Email must be entered"),
-        password: Yup.string().required("Password must be entered"),       
-    }),
-    handleSubmit(values, { setStatus }){
-    axios
-    .post("https://reqres.in/api/users/", values)
-    .then(event => {
-        setStatus(event.data);
-        console.log(event.data)
+  const handleChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
     })
-    .catch(err => console.log(err.e));
+  }
 
+  const onSignup = e => {
+    e.preventDefault();
+    axios
+      .post('https://business-rec-web-be.herokuapp.com/api/auth/register', credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload)
+        props.history.push('/home')
+      })
+  }
 
+  return (
+    <>
+      <h1>Signup Form</h1>
+      <form onSubmit={onSignup}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={credentials.username}
+          onChange={handleChange}
+        />
 
-}
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={credentials.email}
+          onChange={handleChange}
+        />
+        
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={credentials.password}
+          onChange={handleChange}
+        />
+        <button>Sign up</button>
+      </form>
+    </>
+  );
+};
 
-})(Signup);
-export default FormikSignup
-
+export default Signup;
