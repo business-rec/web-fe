@@ -4,6 +4,7 @@ import EditRestForm from "../components/EditRestForm";
 import RestaurantList from '../components/RestaurantList'
 import Header from '../components/Header'
 
+
 const App = () => {
 
   const restData = [
@@ -49,7 +50,7 @@ const App = () => {
     setRests(rests.map(rest => (rest.id === id ? updateRest : rest)));
   };
 
-  
+
   return (
     <div>
       <div>
