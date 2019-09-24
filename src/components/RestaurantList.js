@@ -10,7 +10,7 @@ function RestaurantList(props) {
                         <div key={rest.id}>
                                 <p>{rest.name}</p>
                                 <p>{rest.type}</p>
-                                <p>{rest.adress}</p>
+                                <p>{rest.address}</p>
                                 <p>{rest.city}</p>
                         <div>
                             <button

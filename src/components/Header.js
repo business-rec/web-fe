@@ -1,12 +1,15 @@
 import React from "react";
 
-const Header = () => {
-  return (
-    <div>
-        <h1>This is a header</h1>
-     {/*    <a>Logout</a>
-        <p>{username}</p> */}
-    </div>
-)}
+import { Link } from 'react-router-dom'
+
+function Header() {
+    return (
+        <Container>
+            <Link to="/login">
+                <button>Logout</button>
+            </Link>
+        </Container>
+    )
+}
 
 export default Header;
