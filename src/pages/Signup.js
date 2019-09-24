@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import axios from 'axios';
-//comment
+
 const Signup = (props) => {
  
   const [credentials, setCredentials] = useState({
     username: '',
-    email: '',
     password: ''
   })
 
@@ -38,14 +37,6 @@ const Signup = (props) => {
           onChange={handleChange}
         />
 
-        <input
-          type="text"
-          name="email"
-          placeholder="Email"
-          value={credentials.email}
-          onChange={handleChange}
-        />
-        
         <input
           type="password"
           name="password"
