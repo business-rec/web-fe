@@ -15,7 +15,6 @@ function App() {
       <Route exact path="/signup" component={Signup} />
       <PrivateRoute path="/home" component={Home} />
       <GlobalStyle />
-      <Signup/>
     </div>
   );
 }
