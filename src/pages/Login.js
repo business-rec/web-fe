@@ -16,16 +16,18 @@ const Login=({errors, touched, status}) => {
     <div>
         <Form>
             <div>
-                Email: <Field type="text" name="email" placeholder="enter email address"/>
+                <label>Email</label>
+                <Field type="text" name="email" placeholder="enter email address"/>
                 {touched.email && errors.email && (
                     <p>{errors.email}</p>
                 )}
-                Password: <Field type="password" name="password" placeholder="enter your password"/>
+                <label>Password</label>
+                <Field type="password" name="password" placeholder="enter your password"/>
                 {touched.password && errors.password && (
                     <p>{errors.password}</p>
                 )}
+                <button>Sign In</button>
             </div>
-            <button>Sign In</button>
         </Form>
         {users.map(event => (
         <ul className = "list"key={event.id}>

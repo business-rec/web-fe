@@ -10,6 +10,8 @@ function App() {
     <div>
       <Home />
       <GlobalStyle />
+      <Login/>
+      <Signup/>
     </div>
   );
 }
