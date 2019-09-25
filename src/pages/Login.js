@@ -41,7 +41,7 @@ const Login=({errors, touched, status}) => {
 const FormikLogin = withFormik({
     mapPropsToValues({username,password}){
         return {
-            username: username ||"",
+            username: username || "",
             password: password || ""
         };
     },

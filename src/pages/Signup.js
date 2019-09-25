@@ -17,7 +17,7 @@ const Signup=({errors, touched, status}) => {
         <Form>
             <div>
                 <label>username</label>
-                <Field type= "text" name="username" placeholder="enter username"/>
+                <Field type= "text" name="username" placeholder="create your username"/>
                 {touched.username && errors.username && (
                     <p>{errors.username}</p>
                 )}
@@ -41,18 +41,19 @@ const FormikSignup = withFormik({
     },
     validationSchema: Yup.object().shape({
         username: Yup.string().required("You must enter your name before continuing"),
-        password: Yup.string().required("Password must be entered"),       
+        password: Yup.string().required("Password must be entered")       
     }),
     handleSubmit(values, { setStatus }){
     axios
     .post("https://business-rec-web-be.herokuapp.com/api/auth/register", values)
     .then(event => {
         setStatus(event.data);
-            Signup.history.push('/home')
+            Signup.history.push('/login')
     })
     .catch(err => console.log(err.e));
 
 }
 
 })(Signup);
+console.log(FormikSignup)
 export default FormikSignup
