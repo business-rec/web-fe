@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from 'axios';
 import styled from 'styled-components'
 
+
 const Signup = (props) => {
  
   const [credentials, setCredentials] = useState({
@@ -23,14 +24,15 @@ const Signup = (props) => {
       .post('https://business-rec-web-be.herokuapp.com/api/auth/register', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.payload)
-        props.history.push('/home')
+        props.history.push('/')
       })
+    
   }
 
   return (
     <Main>
-      <Form2 onSubmit={onSignup}>
-      <Header>Signup Form</Header>
+      <Form onSubmit={onSignup}>
+      <Header>Signup</Header>
       <Container>
           <Input
             type="text"
@@ -57,9 +59,9 @@ const Signup = (props) => {
           />
         </Container>
         <Bcontainer>
-          <Button>Sign up</Button>
+          <Button >Sign up</Button>
         </Bcontainer>
-      </Form2>
+      </Form>
     </Main>
   );
 };
@@ -77,11 +79,9 @@ const Main = styled.div`
   justify-content: center;
   flex-direction: column;
 `
-const Form = styled.form `
+const Form = styled.form`
   border: 1px solid black;
   background-color: #ffffff;
-`
-const Form2 = styled(Form)`
   padding: 20px;
 `
 const Header = styled.h1`

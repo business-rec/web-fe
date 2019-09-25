@@ -28,7 +28,7 @@ const Login = (props) => {
   
   return (
     <Main>
-      <Form2 onSubmit={onLogin}>
+      <Form onSubmit={onLogin}>
       <Header>Login</Header>
         <Container>
           <Input
@@ -49,7 +49,7 @@ const Login = (props) => {
         <Bcontainer>
           <Button>Log In</Button>
         </Bcontainer>
-      </Form2>
+      </Form>
     </Main>
   );
 };
@@ -67,11 +67,9 @@ const Main = styled.div`
   justify-content: center;
   flex-direction: column;
 `
-const Form = styled.form `
+const Form = styled.form`
   border: 1px solid black;
   background-color: #ffffff;
-`
-const Form2 = styled(Form)`
   padding: 20px;
 `
 const Header = styled.h1`
@@ -91,7 +89,6 @@ const Bcontainer = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-
 `
 const Button = styled.button`
 background-color: black;
