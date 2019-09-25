@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
         vertical-align: baseline;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        font-family: 'system-ui';
+        font-family: 'Cereal';
     }
     /* HTML5 display-role reset for older browsers */
     article, aside, details, figcaption, figure, 
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
-        // font-family: 'Roboto Mono', monospace;
+        font-family: 'Roboto Mono', monospace;
     }
     ol, ul {
         list-style: none;

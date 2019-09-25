@@ -8,16 +8,16 @@ import Header from '../components/Header'
 const App = () => {
 
   const restData = [
-    { id: 1, name: "AAA", type: "aiueo", adress: '123', city: 'sf' },
-    { id: 2, name: "BBB", type: "kakikukeko", adress: '123', city: 'la' },
-    { id: 3, name: "CCC", type: "sasisuseso", adress: '123', city: 'ny' }
+    { id: 1, name: "AAA", type: "aiueo", address: '123', city: 'sf' },
+    { id: 2, name: "BBB", type: "kakikukeko", address: '123', city: 'la' },
+    { id: 3, name: "CCC", type: "sasisuseso", address: '123', city: 'ny' }
   ];
 
   const initialFormState = { 
     id: null, 
     name: "", 
     type: "",
-    adress: "",
+    address: "",
     city: ""
   };
 
@@ -40,7 +40,7 @@ const App = () => {
         id: rest.id, 
         name: rest.name, 
         type: rest.type,
-        adress: rest.adress,
+        address: rest.address,
         city: rest.city
     });
   };

@@ -38,8 +38,8 @@ const EditRestForm = props => {
       />
       <input
         type="text"
-        name="adress"
-        value={rest.adress}
+        name="address"
+        value={rest.address}
         onChange={handleInputChange}
       />
 

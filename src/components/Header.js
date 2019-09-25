@@ -1,6 +1,5 @@
-import React from 'react'
+import React from "react";
 import styled from 'styled-components'
-
 import { Link } from 'react-router-dom'
 
 function Header() {
@@ -20,6 +19,6 @@ const Container = styled.div`
     justify-content: space-between;
     padding: 20px;
     border-bottom: 1px solid black;
-`
+    `
 
-export default Header
+export default Header;

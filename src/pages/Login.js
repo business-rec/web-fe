@@ -1,52 +1,66 @@
-import React, {useState} from "react";
-import axios from 'axios';
+import React, {useState, useEffect} from "react";
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 
-const Login = (props) => {
- 
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
-  })
+const Login=({errors, touched, status}) => {
+    const [users,setUsers] = useState([]);
+    useEffect(() => {
+        if (status){
+            setUsers([...users, status]);
+        }
+    },[status]);
 
-  const handleChange = e => {
-    setCredentials({
-      ...credentials,
-      [e.target.name]: e.target.value
-    })
-  }
+    return(
 
-  const onLogin = e => {
-    e.preventDefault();
-    axios
-      .post('https://business-rec-web-be.herokuapp.com/api/auth/login', credentials)
-      .then(res => {
-        localStorage.setItem('token', res.data.payload)
-        props.history.push('/home')
-      })
-  }
-  
-  return (
-    <>
-      <h1>Login Form</h1>
-      <form onSubmit={onLogin}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={credentials.username}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={credentials.password}
-          onChange={handleChange}
-        />
-        <button>Log In</button>
-      </form>
-    </>
-  );
+    <div>
+        <Form>
+            <div>
+                <label>Username</label>
+                <Field 
+                type="text" 
+                name="username" 
+                placeholder="enter username"/>
+                {touched.username && errors.username && (
+                    <p>{errors.username}</p>
+                )}
+                <label>Password</label>
+                <Field 
+                type="password" 
+                name="password" 
+                placeholder="enter your password"/>
+                {touched.password && errors.password && (
+                    <p>{errors.password}</p>
+                )}
+                <button>Sign In</button>
+            </div>
+        </Form>
+    </div>
+    );
 };
+const FormikLogin = withFormik({
+    mapPropsToValues({username,password}){
+        return {
+            username: username || "",
+            password: password || ""
+        };
+    },
+    validationSchema: Yup.object().shape({
+        username: Yup.string().required("Username must be entered"),
+        password: Yup.string().required("Password must be entered")    
+    }),
+    handleSubmit(values, { setStatus }){
+    axios
+    .post("https://business-rec-web-be.herokuapp.com/api/auth/login", values)
+    .then(event => {
+        setStatus(event.data);
+            Login.history.push('/home')
+    })
+    .catch(err => console.log(err.e));
 
-export default Login;
+}
+
+})(Login);
+console.log(FormikLogin)
+export default FormikLogin;
+
