@@ -15,23 +15,23 @@ const Signup=({errors, touched, status}) => {
     return(
 
     <Main>
-        <Form>
-            <Container>
-                <Title>Sign Up</Title>
-                <Text>
-                  <Field type= "text" name="username" placeholder="username"/>
-                  {touched.username && errors.username && (
-                      <p>{errors.username}</p>
+      <Form2>
+        <Title>Sign Up</Title>
+        <Text>
+          <Input type= "text" name="username" placeholder="username"/>
+            {touched.username && errors.username && (
+              <p>{errors.username}</p>
                   )}
-                  <Field type="password" name="password" placeholder="password"/>
-                  {touched.password && errors.password && (
-                      <p>{errors.password}</p>
+          <Input type="password" name="password" placeholder="password"/>
+            {touched.password && errors.password && (
+              <p>{errors.password}</p>
                   )}
-                </Text>
-                <Button>Sign Up</Button>
-            </Container>
-        </Form>
-    </Main>
+        </Text>
+        <Buttonc>
+          <Button>Sign Up</Button>
+        </Buttonc>
+      </Form2>
+     </Main>
     );
 };
 const FormikSignup = withFormik({
@@ -42,7 +42,7 @@ const FormikSignup = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().required("You must enter your name before continuing"),
+        username: Yup.string().required("You must enter your username before continuing"),
         password: Yup.string().required("Password must be entered")       
     }),
     handleSubmit(values,  {props, setStatus }){
@@ -63,40 +63,42 @@ export default FormikSignup
 //styles
 
 const Main = styled.div`
-  background-color: #F5F5F5;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`
-
-const Container = styled.div`
-border:1px solid black;
-padding: 30%;
+height: 100vh;
+background-color: #F5F5F5;
 display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-background-color: #fff;
+text-align: center;
 `
-
-const Text = styled.div`
-margin: 25%;
-padding: 10%;
-
-`
-
-const Button = styled.button`
-
-width: 100%;
-color: #ffffff;
-background-color: black;
-padding: 10%;
-
-
+const Form2 = styled(Form)`
+border: 1px solid black;
+background-color: #ffffff;
+padding: 20px;
 `
 const Title = styled.label`
 text-align: center;
 margin: 10%;
+`
+const Text = styled.div`
+display: flex;
+flex-direction: column;
+padding: 60px;
+`
+const Input = styled(Field)`
+width: 100%;
+margin-top: 5%;
+margin-bottom: 5%;
+`
+const Buttonc = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`
+const Button = styled.button`
+background-color: black;
+color: #fff;
+width: 50%;
+text-align: center;
+padding: 5%;
 `
