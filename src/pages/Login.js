@@ -28,7 +28,7 @@ const Login=({errors, touched, status}) => {
                   )}
         </Text>
         <Buttonc>
-          <Button>Sign In</Button>
+          <Button className = "buttonclass">Sign In</Button>
         </Buttonc>
       </Form2>
     </Main>
@@ -45,6 +45,7 @@ const FormikLogin = withFormik({
         username: Yup.string().required("Username must be entered"),
         password: Yup.string().required("Password must be entered")    
     }),
+    
     handleSubmit(values, { props, setStatus }){
     axios
     .post("https://business-rec-web-be.herokuapp.com/api/auth/login", values)
@@ -66,7 +67,7 @@ export default FormikLogin;
 
 const Main = styled.div`
 height: 100vh;
-background-color: #F5F5F5;
+background-color: #4682B4;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -96,6 +97,10 @@ const Buttonc = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
+&: hover .buttonclass{
+  background-color: #fff;
+  color: black;
+  }
 `
 
 const Button = styled.button`

@@ -28,11 +28,13 @@ const Signup=({errors, touched, status}) => {
                   )}
         </Text>
         <Buttonc>
-          <Button>Sign Up</Button>
+          <Button className = "buttonclass">Sign Up</Button>
         </Buttonc>
       </Form2>
      </Main>
     );
+
+    
 };
 const FormikSignup = withFormik({
     mapPropsToValues({username,password}){
@@ -42,9 +44,16 @@ const FormikSignup = withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        username: Yup.string().required("You must enter your username before continuing"),
-        password: Yup.string().required("Password must be entered")       
-    }),
+        username: Yup.string()
+        .required("You must create a username before continuing")
+        .min(4, "must be 4 or more characters")
+        .max(15, 'thats a bit long, make it less than 15 characters'),
+        password: Yup.string()
+        .required("Password must be entered")       
+        .min(4, "must be 4 or more characters")
+        .max(15, 'thats a bit long, make it less than 15 characters')
+
+    }),    
     handleSubmit(values,  {props, setStatus }){
     axios
     .post("https://business-rec-web-be.herokuapp.com/api/auth/register", values)
@@ -64,12 +73,13 @@ export default FormikSignup
 
 const Main = styled.div`
 height: 100vh;
-background-color: #F5F5F5;
+background-color: #4682B4;
 display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
 text-align: center;
+
 `
 const Form2 = styled(Form)`
 border: 1px solid black;
@@ -94,6 +104,10 @@ const Buttonc = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
+&: hover .buttonclass{
+background-color: #fff;
+color: black;
+}
 `
 const Button = styled.button`
 background-color: black;
