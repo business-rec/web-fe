@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Header() {
     return (
         <Container>
-            <Link to="/login">
+            <Link to="/">
                 <button>Logout</button>
             </Link>
         </Container>

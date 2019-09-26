@@ -49,8 +49,10 @@ const FormikLogin = withFormik({
     axios
     .post("https://business-rec-web-be.herokuapp.com/api/auth/login", values)
     .then(event => {
+        localStorage.setItem("token", event.data.token);
+        localStorage.setItem("user", JSON.stringify(event.data.user));
         setStatus(event.data);
-            props.history.push('/home')
+        props.history.push('/home')
     })
     .catch(err => console.log(err.e));
 

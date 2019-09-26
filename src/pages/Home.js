@@ -54,7 +54,7 @@ const App = () => {
   return (
     <div>
       <div>
-        <Header />
+        <Header  />
         <div>
           {editing ? (
             <div>
