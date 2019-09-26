@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+
+
+
 const EditRestForm = props => {
+
   const [rest, setRest] = useState(props.currentRest);
 
   useEffect(
@@ -22,6 +26,13 @@ const EditRestForm = props => {
         props.updateRest(rest.id, rest);
       }}
     >
+      <label>City</label>
+      <input
+        type="text"
+        name="city"
+        value={rest.city}
+        onChange={handleInputChange}
+      />
       <label>Name</label>
       <input
         type="text"
@@ -29,24 +40,44 @@ const EditRestForm = props => {
         value={rest.name}
         onChange={handleInputChange}
       />
-      <label>Username</label>
+     
+     <label>State</label>
+     <input
+        type="text"
+        name="state"
+        value={rest.state}
+        onChange={handleInputChange}
+      />
+
+     <label>streetAddress</label>
+     <input
+        type="text"
+        name="streetAddress"
+        value={rest.streetAddress}
+        onChange={handleInputChange}
+      />
+
+      <label>streetName</label>
+     <input
+        type="text"
+        name="streetName"
+        value={rest.streetName}
+        onChange={handleInputChange}
+      />
+
+      <label>type</label>
       <input
         type="text"
         name="type"
         value={rest.type}
         onChange={handleInputChange}
       />
+
+      <label>zipCode</label>
       <input
         type="text"
-        name="address"
-        value={rest.address}
-        onChange={handleInputChange}
-      />
-
-     <input
-        type="text"
-        name="city"
-        value={rest.city}
+        name="zipCode"
+        value={rest.zipCode}
         onChange={handleInputChange}
       />
 

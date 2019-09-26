@@ -9,6 +9,9 @@ import Signup from "./pages/Signup";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+
+
+  
   return (
     <div>
       <Route exact path="/" component={Login} />

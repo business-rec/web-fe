@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddRestForm from "../components/AddRestForm";
 import EditRestForm from "../components/EditRestForm";
 import RestaurantList from '../components/RestaurantList'
 import Header from '../components/Header'
+import axiosWithAuth from '../utils/axiosWithAuth'
 
+const Home = () => {
 
-const App = () => {
-
-  const restData = [
-    { id: 1, name: "AAA", type: "aiueo", address: '123', city: 'sf' },
-    { id: 2, name: "BBB", type: "kakikukeko", address: '123', city: 'la' },
-    { id: 3, name: "CCC", type: "sasisuseso", address: '123', city: 'ny' }
-  ];
+  const currentUser = JSON.parse(window.localStorage.getItem('user'));
+  const [user, setUser]= useState(currentUser)
 
   const initialFormState = { 
     id: null, 
@@ -21,18 +18,59 @@ const App = () => {
     city: ""
   };
 
-  const [rests, setRests] = useState(restData);
-  const [currentRest, setCurrentRest] = useState(initialFormState);
-  const [editing, setEditing] = useState(false);
+  const [rests, setRests] = useState({});
 
-  const addRest = rest => {
-    rest.id = rests.length + 1;
-    setRests([...rests, rest]);
+  const getRest = () => {
+    axiosWithAuth()
+      .get(
+        `https://business-rec-web-be.herokuapp.com/api/users/${user.id}/companies`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`
+          }
+        }
+      )
+      .then(res => {
+        setRests(res.data)
+      })
+      .catch(err => console.log(err.response));
   };
+
+  useEffect(() => {
+    getRest();
+  }, []);
+
+  const [editing, setEditing] = useState(false);  
+  const [currentRest, setCurrentRest] = useState(initialFormState);
+  const [newRest, setNewRest] = useState(initialFormState);
+
+  // ADD A BUSINESS
+  const addRest = rest => {
+    axiosWithAuth()
+    .post(`https://business-rec-web-be.herokuapp.com/api/users/${user.id}/newcompany`,
+    rest)
+    .then(res => {
+      const newrest = res.data
+      setRests([...rests, newrest])
+    })
+    .catch(err => console.log(err.response));
+  }; 
+
 
   const deleteRest = id => {
-    setRests(rests.filter(rest => rest.id !== id));
+    const restId = id;
+    console.log(restId)
+    axiosWithAuth()
+    .delete(`https://business-rec-web-be.herokuapp.com/api/users/${user.id}/companies`, restId 
+    )
+    .then(res => {
+      console.log(res)
+      const id = res.data.id;
+      const New = rests.filter(rest => rest.id !== id)
+      setNewRest(New);
+    })
   };
+
 
   const editRest = rest => {
     setEditing(true);
@@ -54,7 +92,7 @@ const App = () => {
   return (
     <div>
       <div>
-        <Header />
+        <Header user={user.username} />
         <div>
           {editing ? (
             <div>
@@ -69,7 +107,7 @@ const App = () => {
           ) : (
             <div>
               <h2>Add Restaurant</h2>
-              <AddRestForm addRest={addRest} />
+              <AddRestForm  addRest={addRest}/>
             </div>
           )}
         </div>
@@ -83,5 +121,5 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
   

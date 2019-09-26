@@ -2,10 +2,11 @@ import React from "react";
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function Header() {
+function Header(props) {
     return (
         <Container>
-            <Link to="/login">
+            <p>@{props.user}</p>
+            <Link to="/">
                 <button>Logout</button>
             </Link>
         </Container>

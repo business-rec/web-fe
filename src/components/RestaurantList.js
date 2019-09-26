@@ -2,16 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 function RestaurantList(props) {
+
     return (
         <Container>
             <div>
                 {props.rests.length > 0 ? (
                     props.rests.map(rest => (
                         <div key={rest.id}>
-                                <p>{rest.name}</p>
-                                <p>{rest.type}</p>
-                                <p>{rest.address}</p>
                                 <p>{rest.city}</p>
+                                <p>{rest.name}</p>
+                                <p>{rest.state}</p>
+                                <p>{rest.streetName}</p>
+                                <p>{rest.streetAddress}</p>
+                                <p>{rest.type}</p>
+                                <p>{rest.zipCode}</p>
                         <div>
                             <button
                             className="button muted-button"
@@ -22,6 +26,7 @@ function RestaurantList(props) {
                         <button
                             className="button muted-button"
                             onClick={() => props.deleteRest(rest.id)}
+
                         >
                             Delete
                         </button>
