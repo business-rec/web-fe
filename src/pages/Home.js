@@ -79,7 +79,7 @@ const Home = () => {
 
   const editRest = rest => {
     setEditing(true);
-    setCurrentRest({ 
+    setCurrentRest({  
         city: rest.city,
         name: rest.name, 
         state: rest.state,
