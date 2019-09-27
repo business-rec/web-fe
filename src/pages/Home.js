@@ -119,7 +119,7 @@ const updateRest = (id, updatedrest) => {
         <div>
           {editing ? (
             <div>
-              <h2>Edit Business</h2>
+              <Hheader>Edit Business</Hheader>
               <EditRestForm
                 editing={editing}
                 setEditing={setEditing}

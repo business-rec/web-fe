@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth';
+import styled from 'styled-components'
 
 
 const EditRestForm = props => {
@@ -52,7 +53,7 @@ const EditRestForm = props => {
   };
 
   return (
-    <form
+    <Fmain
       onSubmit={event => {
         event.preventDefault();
         props.updateRest(rest.id, rest);
@@ -121,15 +122,31 @@ const EditRestForm = props => {
         onChange={handleInputChange}
       />
 
-      <button>Update</button>
+      <Fbutton>Update</Fbutton>
       <button
         onClick={() => props.setEditing(false)}
         className="button muted-button"
       >
         Cancel
       </button>
-    </form>
+    </Fmain>
   );
 };
 
 export default EditRestForm;
+
+const Fmain = styled.form`
+height: 10vh;
+display: flex;
+align-items: center;
+justify-content: space-around;
+
+`
+const Fbutton = styled.button`
+background-color: #DC143C;
+color: #fff;
+text-align: center;
+padding: 0.5%;
+margin-right: 2%;
+
+`
