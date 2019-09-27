@@ -30,7 +30,7 @@ function RestaurantList(props) {
                   Delete
                 </button>
               </div>
-              <RestaurantTerms rest={rest} />
+             <RestaurantTerms rest={rest} />  
             </Blist>
           ))
         ) : (

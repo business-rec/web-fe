@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 function RestaurantTerms({ rest }) {
-  const [terms, setTerms] = useState({});
+  const [terms, setTerms] = useState([]);
   const restId = rest.id;
   useEffect(() => {
     const getRest = () => {
@@ -17,13 +17,19 @@ function RestaurantTerms({ rest }) {
           }
         )
         .then(res => {
-          setTerms(res.data.terms);
+          let data = res.data;
+          data = data.reduce((obj, item) => {
+            obj[item.id] = item;
+            return obj;
+          });
+          setTerms(data.terms);
+          console.log(data.terms);
         })
         .catch(err => console.log(err.response));
     };
     getRest();
-  }, [rest, restId]);
-
+  }, []);
+  
   return (
     <Container>
       <div>
@@ -49,4 +55,4 @@ const Container = styled.div`
   margin-left: 100px;
 `;
 
-export default RestaurantTerms;
+export default RestaurantTerms; 

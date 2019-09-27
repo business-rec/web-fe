@@ -91,12 +91,12 @@ const Home = () => {
     });
   };
 
-  /* const updateRest = (id, updateRest) => {
+  const updateRest = (id, updateRest) => {
     setEditing(false);
     setRests(rests.map(rest => (rest.id === id ? updateRest : rest)));
   };
- */
-
+ 
+/* 
 const updateRest = (id, updatedrest) => {
   axiosWithAuth()
     .patch(
@@ -110,7 +110,7 @@ const updateRest = (id, updatedrest) => {
       setRests(rests.map(rest => (rest.id === id ? updateRest : rest))); 
     });
 };
-
+ */
 
   return (
     <div>
