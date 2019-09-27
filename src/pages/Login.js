@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Login=({errors, touched, status}) => {
     const [users,setUsers] = useState([]);
@@ -31,6 +32,9 @@ const Login=({errors, touched, status}) => {
           <Button className = "buttonclass">Sign In</Button>
         </Buttonc>
       </Form2>
+      <Link to ="/signup">
+        <Slink>Don't have an account? Sign up.</Slink>
+      </Link>
     </Main>
     );
 };
@@ -109,4 +113,7 @@ color: #fff;
 width: 50%;
 text-align: center;
 padding: 5%;
+`
+const Slink = styled.h3`
+color: black;
 `
