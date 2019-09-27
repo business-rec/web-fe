@@ -5,10 +5,10 @@ function RestaurantList(props) {
 
     return (
         <Container>
-            <div>
+            <Container2>
                 {props.rests.length > 0 ? (
                     props.rests.map(rest => (
-                        <div key={rest.id}>
+                        <Blist key={rest.id}>
                                 <p>{rest.city}</p>
                                 <p>{rest.name}</p>
                                 <p>{rest.state}</p>
@@ -31,20 +31,43 @@ function RestaurantList(props) {
                             Delete
                         </button>
                         </div>
-                    </div>
+                    </Blist>
                         ))
                     ) : (
                         <div>
-                            <p>No users</p>
+                            <Users>No users</Users>
                         </div>
                     )}
-            </div>
+            </Container2>
         </Container>
     )
 }
 
 const Container = styled.div`
-   margin-left: 100px;
+`
+const Container2 = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-around;
+`
+
+
+const Users = styled.p`
+text-align: center;
+
+`
+const Blist = styled.div`
+width: 25%;
+padding: 2%;
+margin: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border: 1px solid black;
+
+
 `
 
 export default RestaurantList

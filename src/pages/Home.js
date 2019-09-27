@@ -4,6 +4,7 @@ import EditRestForm from "../components/EditRestForm";
 import RestaurantList from '../components/RestaurantList'
 import Header from '../components/Header'
 import axiosWithAuth from '../utils/axiosWithAuth'
+import styled from 'styled-components'
 
 const Home = () => {
 
@@ -128,13 +129,13 @@ const updateRest = (id, updatedrest) => {
             </div>
           ) : (
             <div>
-              <h2>Add Business</h2>
+              <Hheader>Add a Business</Hheader>
               <AddRestForm  addRest={addRest}/>
             </div>
           )}
         </div>
         <div>
-          <h2>My Businesses</h2>
+          <Hheader>My Businesses</Hheader>
           <RestaurantList rests={rests} deleteRest={deleteRest} editRest={editRest} />
         </div>
 
@@ -144,4 +145,11 @@ const updateRest = (id, updatedrest) => {
 };
 
 export default Home;
-  
+
+const Hheader = styled.h2`
+text-align: center;
+padding: 1%;
+
+
+
+`

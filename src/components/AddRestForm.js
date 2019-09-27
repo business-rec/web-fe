@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth'
+import styled from 'styled-components'
 
 const AddRestForm = props => {
    
@@ -43,7 +44,7 @@ const [type, setType] = useState([]);
   }, []);
 
   return (
-    <form
+    <Fmain
       onSubmit={event => {
         event.preventDefault();
         props.addRest(rest);
@@ -110,13 +111,25 @@ const [type, setType] = useState([]);
         onChange={handleInputChange}
       />
       
-      <button>Add a business</button>
-    </form>
+      <Fbutton>Add a business</Fbutton>
+    </Fmain>
   );
 };
 
 export default AddRestForm;
 
+const Fmain = styled.form`
+height: 10vh;
+display: flex;
+align-items: center;
+justify-content: space-around;
 
+`
+const Fbutton = styled.button`
+background-color: #DC143C;
+color: #fff;
+text-align: center;
+padding: 0.5%;
+margin-right: 2%;
 
-
+`
