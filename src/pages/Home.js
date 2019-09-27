@@ -149,6 +149,7 @@ export default Home;
 const Hheader = styled.h2`
 text-align: center;
 padding: 1%;
+font-weight: bold;
 
 
 

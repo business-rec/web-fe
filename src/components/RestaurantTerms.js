@@ -36,9 +36,9 @@ function RestaurantTerms({ rest }) {
         {terms.length > 0 ? (
           terms.map(term => (
             <div key={term.id}>
-              <P>{term.term}</P>
-              <P>{term.ratingscore}</P>
-              <P>{term.termtype}</P>
+              <P>Term:  {term.term}</P>
+              <P>Rating Score:  {term.ratingscore}</P>
+              <P>Term Type:  {term.termtype}</P>
             </div>
           ))
         ) : (
