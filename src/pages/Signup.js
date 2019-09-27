@@ -73,7 +73,7 @@ export default FormikSignup
 
 const Main = styled.div`
 height: 100vh;
-background-color: #4682B4;
+background-color: #fff;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -106,11 +106,11 @@ align-items: center;
 justify-content: center;
 &: hover .buttonclass{
 background-color: #fff;
-color: black;
+color: #DC143C;
 }
 `
 const Button = styled.button`
-background-color: black;
+background-color: #DC143C;
 color: #fff;
 width: 50%;
 text-align: center;

@@ -2,16 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 function RestaurantList(props) {
+
     return (
         <Container>
-            <div>
+            <Container2>
                 {props.rests.length > 0 ? (
                     props.rests.map(rest => (
-                        <div key={rest.id}>
-                                <p>{rest.name}</p>
-                                <p>{rest.type}</p>
-                                <p>{rest.address}</p>
+                        <Blist key={rest.id}>
                                 <p>{rest.city}</p>
+                                <p>{rest.name}</p>
+                                <p>{rest.state}</p>
+                                <p>{rest.streetName}</p>
+                                <p>{rest.streetAddress}</p>
+                                <p>{rest.type}</p>
+                                <p>{rest.zipCode}</p>
                         <div>
                             <button
                             className="button muted-button"
@@ -22,24 +26,48 @@ function RestaurantList(props) {
                         <button
                             className="button muted-button"
                             onClick={() => props.deleteRest(rest.id)}
+
                         >
                             Delete
                         </button>
                         </div>
-                    </div>
+                    </Blist>
                         ))
                     ) : (
                         <div>
-                            <p>No users</p>
+                            <Users>No users</Users>
                         </div>
                     )}
-            </div>
+            </Container2>
         </Container>
     )
 }
 
 const Container = styled.div`
-   margin-left: 100px;
+`
+const Container2 = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-around;
+`
+
+
+const Users = styled.p`
+text-align: center;
+
+`
+const Blist = styled.div`
+width: 25%;
+padding: 2%;
+margin: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border: 1px solid black;
+
+
 `
 
 export default RestaurantList

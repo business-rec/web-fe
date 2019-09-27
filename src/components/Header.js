@@ -2,23 +2,36 @@ import React from "react";
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function Header() {
+function Header(props) {
     return (
         <Container>
+            <Title>BUSINESS-REC</Title>
+            <p>@{props.user}</p>
             <Link to="/">
-                <button>Logout</button>
+                <Nbutton>Logout</Nbutton>
             </Link>
         </Container>
     )
 }
 
+const Nbutton = styled.button`
+background-color: #fff;
+color: black;
+text-align: center;
+padding: 20%;
+margin-right: 2%;
+`
+const Title = styled.h1`
+font-size: 30px;
+`
+
 const Container = styled.div`
-    background-color: #fff;
-    color: black;
+    background-color: #DC143C;
+    color: white;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid black;
+    align-items: center;
+    padding: 2.5%;
     `
 
 export default Header;
