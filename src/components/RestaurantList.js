@@ -1,61 +1,73 @@
-import React from 'react'
-import Restaurant from './Restaurant'
+import React from "react";
+import styled from "styled-components";
+import RestaurantTerms from "./RestaurantTerms";
 
-import styled from 'styled-components'
-
-const restaurants = [
-    {
-        name: 'Per Se',
-        type: 'French cuisine',
-        adress: '10 Columbus Cr',
-        city: 'New York'
-    },
-    {
-        name: 'Danel',
-        type: 'Fusion',
-        adress: '60 E 65th St',
-        city: 'New York'
-    },
-    {
-        name: 'The Modern',
-        type: 'New American',
-        adress: '9 W 53rd St',
-        city: 'New York'
-    },
-    {
-        name: 'Gramercy Tavern',
-        type: 'Tavern',
-        adress: '42 E 20th St',
-        city: 'New York'
-    },
-]
-
-function RestaurantList() {
-    return (
-        <Container>
-            <Title>My Restaurants</Title>
-            <ul>
-                {restaurants.map(rest => {
-                    return  <Restaurant 
-                                name={rest.name} 
-                                type={rest.type}
-                                adress={rest.adress}
-                                city={rest.city}
-                            /> 
-                })}
-            </ul>
-        </Container>
-    )
+function RestaurantList(props) {
+  return (
+    <Container>
+      <Container2>
+        {props.rests.length > 0 ? (
+          props.rests.map(rest => (
+            <Blist key={rest.id}>
+              <p>{rest.city}</p>
+              <p>{rest.name}</p>
+              <p>{rest.state}</p>
+              <p>{rest.streetName}</p>
+              <p>{rest.streetAddress}</p>
+              <p>{rest.type}</p>
+              <p>{rest.zipCode}</p>
+              <div>
+                <button
+                  className="button muted-button"
+                  onClick={() => props.editRest(rest)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="button muted-button"
+                  onClick={() => props.deleteRest(rest.id)}
+                >
+                  Delete
+                </button>
+              </div>
+              <RestaurantTerms rest={rest} />
+            </Blist>
+          ))
+        ) : (
+          <div>
+            <p>No companies</p>
+          </div>
+        )}
+      </Container2>
+    </Container>
+  );
 }
 
-const Title = styled.h1`
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 25px;
+const Container = styled.div`
+`
+const Container2 = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-around;
 `
 
-const Container = styled.div`
-   margin-left: 100px;
+
+const Users = styled.p`
+text-align: center;
+
+`
+const Blist = styled.div`
+width: 25%;
+padding: 2%;
+margin: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border: 1px solid black;
+
+
 `
 
 export default RestaurantList
