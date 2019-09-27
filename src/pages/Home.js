@@ -119,7 +119,7 @@ const updateRest = (id, updatedrest) => {
         <div>
           {editing ? (
             <div>
-              <h2>Edit Business</h2>
+              <Hheader>Edit Business</Hheader>
               <EditRestForm
                 editing={editing}
                 setEditing={setEditing}
@@ -149,6 +149,7 @@ export default Home;
 const Hheader = styled.h2`
 text-align: center;
 padding: 1%;
+font-weight: bold;
 
 
 

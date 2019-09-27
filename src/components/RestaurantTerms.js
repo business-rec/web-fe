@@ -32,13 +32,13 @@ function RestaurantTerms({ rest }) {
   
   return (
     <Container>
-      <div>
+      <Smallcontainer>
         {terms.length > 0 ? (
           terms.map(term => (
             <div key={term.id}>
-              <p>{term.term}</p>
-              <p>{term.ratingscore}</p>
-              <p>{term.termtype}</p>
+              <P>Term:  {term.term}</P>
+              <P>Rating Score:  {term.ratingscore}</P>
+              <P>Term Type:  {term.termtype}</P>
             </div>
           ))
         ) : (
@@ -46,13 +46,23 @@ function RestaurantTerms({ rest }) {
             <p>No users</p>
           </div>
         )}
-      </div>
+      </Smallcontainer>
     </Container>
   );
 }
 
 const Container = styled.div`
-  margin-left: 100px;
+
 `;
+const Smallcontainer = styled.div`
+background-color: #fff;
+
+`
+const P = styled.p`
+text-align: center;
+padding: 2%;
+background-color: #fff;
+
+`
 
 export default RestaurantTerms; 

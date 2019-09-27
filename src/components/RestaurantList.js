@@ -9,27 +9,27 @@ function RestaurantList(props) {
         {props.rests.length > 0 ? (
           props.rests.map(rest => (
             <Blist key={rest.id}>
-              <p>{rest.city}</p>
-              <p>{rest.name}</p>
-              <p>{rest.state}</p>
-              <p>{rest.streetName}</p>
-              <p>{rest.streetAddress}</p>
-              <p>{rest.type}</p>
-              <p>{rest.zipCode}</p>
-              <div>
-                <button
+              <P>City: {rest.city}</P>
+              <P>Name: {rest.name}</P>
+              <P>State: {rest.state}</P>
+              <P>Street Name: {rest.streetName}</P>
+              <P>Street: {rest.streetAddress}</P>
+              <P>Business Type: {rest.type}</P>
+              <P>Zip Code: {rest.zipCode}</P>
+              <Newbuttondiv>
+                <Newbutton
                   className="button muted-button"
                   onClick={() => props.editRest(rest)}
                 >
                   Edit
-                </button>
-                <button
+                </Newbutton>
+                <Newbutton
                   className="button muted-button"
                   onClick={() => props.deleteRest(rest.id)}
                 >
                   Delete
-                </button>
-              </div>
+                </Newbutton>
+              </Newbuttondiv>
              <RestaurantTerms rest={rest} />  
             </Blist>
           ))
@@ -48,8 +48,10 @@ const Container = styled.div`
 const Container2 = styled.div`
    display: flex;
    flex-wrap: wrap;
-   align-items: center;
+   align-items: flex-start;
    justify-content: space-around;
+
+
 `
 
 
@@ -61,12 +63,28 @@ const Blist = styled.div`
 width: 25%;
 padding: 2%;
 margin: 10px;
+border: 2px solid black;
+
+
+`
+const P = styled.p`
+text-align: center;
+padding: 2%;
+background-color: #fff;
+
+`
+const Newbutton = styled.button`
+
+background-color: #DC143C;
+color: #fff;
+text-align: center;
+padding: 2% 4% 2% 4%;
+margin: 2%;
+`
+const Newbuttondiv = styled.div`
 display: flex;
-flex-direction: column;
 justify-content: center;
 align-items: center;
-border: 1px solid black;
-
 
 `
 
