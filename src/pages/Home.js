@@ -20,6 +20,7 @@ const Home = () => {
 
   const [rests, setRests] = useState({});
 
+// DISPLAY BUSINESSES
   const getRest = () => {
     axiosWithAuth()
       .get(
@@ -40,8 +41,6 @@ const Home = () => {
     getRest();
   }, []);
 
-  const [editing, setEditing] = useState(false);  
-  const [currentRest, setCurrentRest] = useState(initialFormState);
   const [newRest, setNewRest] = useState(initialFormState);
 
   // ADD A BUSINESS
@@ -56,37 +55,60 @@ const Home = () => {
     .catch(err => console.log(err.response));
   }; 
 
-
+// DELETE A BUSINESS
   const deleteRest = id => {
-    const restId = id;
-    console.log(restId)
     axiosWithAuth()
-    .delete(`https://business-rec-web-be.herokuapp.com/api/users/${user.id}/companies`, restId 
-    )
-    .then(res => {
-      console.log(res)
-      const id = res.data.id;
-      const New = rests.filter(rest => rest.id !== id)
-      setNewRest(New);
-    })
+      .delete(
+        `https://business-rec-web-be.herokuapp.com/api/users/${
+          user.id
+        }/companies`,
+        { data: { id: `${id}` } }
+      )
+      .then(res => {
+        console.log(res);
+        const id = res.data.id;
+        setNewRest(rests.filter(rest => rest.id !== id));
+      });
   };
+
+
+  const [editing, setEditing] = useState(false);  
+  const [currentRest, setCurrentRest] = useState(initialFormState);
 
 
   const editRest = rest => {
     setEditing(true);
     setCurrentRest({ 
-        id: rest.id, 
+        city: rest.city,
         name: rest.name, 
+        state: rest.state,
+        streetName: rest.streetName,
+        streetAddress: rest.streetAddress,
         type: rest.type,
-        address: rest.address,
-        city: rest.city
+        zipCode: rest.zipCode
+
     });
   };
 
-  const updateRest = (id, updateRest) => {
+  /* const updateRest = (id, updateRest) => {
     setEditing(false);
     setRests(rests.map(rest => (rest.id === id ? updateRest : rest)));
   };
+ */
+
+const updateRest = (id, updatedrest) => {
+  axiosWithAuth()
+    .patch(
+      `https://business-rec-web-be.herokuapp.com/api/users/${
+        user.id
+      }/companies`,
+      {data: updatedrest}
+    )
+    .then(res => {
+      setEditing(false);
+      setRests(rests.map(rest => (rest.id === id ? updateRest : rest))); 
+    });
+};
 
 
   return (
@@ -96,7 +118,7 @@ const Home = () => {
         <div>
           {editing ? (
             <div>
-              <h2>Edit Restaurant</h2>
+              <h2>Edit Business</h2>
               <EditRestForm
                 editing={editing}
                 setEditing={setEditing}
@@ -106,13 +128,13 @@ const Home = () => {
             </div>
           ) : (
             <div>
-              <h2>Add Restaurant</h2>
+              <h2>Add Business</h2>
               <AddRestForm  addRest={addRest}/>
             </div>
           )}
         </div>
         <div>
-          <h2>My Restaurants</h2>
+          <h2>My Businesses</h2>
           <RestaurantList rests={rests} deleteRest={deleteRest} editRest={editRest} />
         </div>
 

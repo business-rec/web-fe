@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
 const EditRestForm = props => {
@@ -13,6 +12,39 @@ const EditRestForm = props => {
     },
     [props]
   );
+
+
+  const [type, setType] = useState([]);
+
+  const getType = () => {
+    axiosWithAuth()
+      .get(
+        `https://business-rec-web-be.herokuapp.com/api/companies/companytypes`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`
+          }
+        }
+      )
+      .then(res => {
+        setType(res.data)
+      })
+      .catch(err => console.log(err.response));
+  };
+
+  useEffect(() => {
+    getType();
+  }, []);
+
+
+
+
+
+
+
+
+
+
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -66,12 +98,20 @@ const EditRestForm = props => {
       />
 
       <label>type</label>
-      <input
-        type="text"
+      <select
+        type="dropddown"
         name="type"
         value={rest.type}
         onChange={handleInputChange}
-      />
+      >
+      {type.map(type => (
+        <option value={type.type}>{type.type}</option>
+      ))}
+      </select>
+
+
+
+
 
       <label>zipCode</label>
       <input

@@ -48,6 +48,7 @@ const [type, setType] = useState([]);
         event.preventDefault();
         props.addRest(rest);
         setRest(initialFormState);
+        console.log(rest)
       }}
     >
       <label>City</label>
@@ -81,7 +82,7 @@ const [type, setType] = useState([]);
         onChange={handleInputChange}
       />
 
-      <label>streetName</label>
+      <label>User Review</label>
      <input
         type="text"
         name="streetName"
@@ -91,7 +92,7 @@ const [type, setType] = useState([]);
 
       <label>type</label>
       <select
-        type="text"
+        type="dropddown"
         name="type"
         value={rest.type}
         onChange={handleInputChange}
